@@ -1,0 +1,11 @@
+{
+    "name": "testpak2",
+    "dependencies": {
+        "core": "*"
+    },
+    "description": "",
+    "files": [
+        "main.ts",
+        "README.md"
+    ]
+}
