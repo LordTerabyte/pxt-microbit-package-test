@@ -1,5 +1,6 @@
 {
     "name": "testpak2",
+    "version": "0.0.1",
     "dependencies": {
         "core": "*"
     },
@@ -7,5 +8,6 @@
     "files": [
         "main.ts",
         "README.md"
-    ]
+    ],
+    "public": true
 }
