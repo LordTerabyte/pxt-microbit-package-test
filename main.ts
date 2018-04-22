@@ -10,6 +10,18 @@
 // }
 
 
+export const enum MotorStanje {
+    Stop = 0,
+    SmjerB = 1,
+    SmjerA = 2
+}
+
+export const enum MotorID {
+    M01 = 0,
+    M02 = 1,
+    M03 = 2,
+    M04 = 3
+}
 
 /**
  * Kontrola ekrana
@@ -40,25 +52,6 @@ namespace ekran {
  */
 //% weight=70 icon="\uf0e2" color=#EC7505
 namespace motor {
-
-    export enum MotorStanje {
-        Stop = 0,
-        SmjerB = 1,
-        SmjerA = 2
-    }
-
-    //% block
-    export function stanje_stop(): MotorStanje {
-        return MotorStanje.SmjerA;
-    }
-    
-    export const enum MotorID {
-        M01 = 0,
-        M02 = 1,
-        M03 = 2,
-        M04 = 3
-    }
-
     let motorPinMapa : { [i:number]: DigitalPin[] } = {
         [MotorID.M01]: [DigitalPin.P8, DigitalPin.P9],
         [MotorID.M02]: [DigitalPin.P10, DigitalPin.P12],
