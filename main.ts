@@ -49,7 +49,7 @@ enum KojeStanje {
     smjer_b
 }
 
-let motorPinMapa = {
+let motorPinMapa : { [i:number]:DigitalPin[] } = {
     1: [DigitalPin.P8, DigitalPin.P9],
     2: [DigitalPin.P10, DigitalPin.P12],
     3: [DigitalPin.P13, DigitalPin.P14],
@@ -63,16 +63,16 @@ let motorPinMapa = {
 namespace motor {
 
     //% weight=100
-    //% blockId=motor
+    //% blockId=motor_conv
     //% block="%kojeg"
-    export function motor(kojeg: KojiMotor): number {
+    export function motor_conv(kojeg: KojiMotor): number {
         return <number>kojeg;
     }
 
     //% weight=99
-    //% blockId=stanje
+    //% blockId=stanje_conv
     //% block="%koje"
-    export function stanje(koje: KojeStanje): string {
+    export function stanje_conv(koje: KojeStanje): string {
         switch (koje) {
             case KojeStanje.stop: return "stop";
             case KojeStanje.smjer_a: return "smjer_a";
@@ -86,7 +86,7 @@ namespace motor {
      */
     //% weight=98
     //% blockId=promjeni_stanje
-    //% block="promjeni stanje| motora  %broj_motora|  u %stanje"
+    //% block="promjeni stanje| motora  %broj_motora=motor_conv|  u %stanje=stanje_conv"
     //% blockExternalInputs=true
     export function promjeni_stanje(broj_motora: number, stanje: string): void {
         let p = motorPinMapa[broj_motora];
@@ -118,7 +118,7 @@ namespace motor {
      */
     //% weight=97
     //% blockId=motor_stop
-    //% block="stopiraj motor %broj_motora"
+    //% block="stopiraj motor %broj_motora=motor_conv"
     export function stop(broj_motora: number): void {
         promjeni_stanje(broj_motora, "stop");
     }
@@ -128,7 +128,7 @@ namespace motor {
      */
     //% weight=96
     //% blockId=motor_vrtiA
-    //% block="vrti motor %broj_motora| u smjeru A"
+    //% block="vrti motor %broj_motora=motor_conv| u smjeru A"
     export function smjerA(broj_motora: number): void {
         promjeni_stanje(broj_motora, "smjer_a");
     }
@@ -138,57 +138,9 @@ namespace motor {
      */
     //% weight=95
     //% blockId=motor_vrtiB
-    //% block="vrti motor %broj_motora| u smjeru B"
+    //% block="vrti motor %broj_motora=motor_conv| u smjeru B"
     export function smjerB(broj_motora: number): void {
         promjeni_stanje(broj_motora, "smjer_b");
     }
 
-    // //% weight=100
-    // //% block
-    // export function motor01() { return 1; }
-
-    // //% weight=99
-    // //% block
-    // export function motor02() { return 2; }
-
-    // //% weight=98
-    // //% block
-    // export function motor03() { return 3; }
-
-    // //% weight=97
-    // //% block
-    // export function motor04() { return 4; }
-
-    // //% block="MyEnum"
-    // export enum MyEnum {
-    //     //% block="one"
-    //     One = 1,
-    //     //% block="two"
-    //     Two = 2
-    // }
-
-    // //% block
-    // export function one(): MyEnum {
-    //     return MyEnum.One;
-    // }
-
-    // /**
-    //  * TODO: describe your function here
-    //  * @param n describe parameter here, eg: 5
-    //  * @param s describe parameter here, eg: "Hello"
-    //  * @param e describe parameter here
-    //  */    
-    // //% block
-    // export function foo(n: number, s: string, e: MyEnum): void {
-    //     // Add code here
-    // }
-
-    // /**
-    //  * TODO: describe your function here
-    //  * @param value describe value here, eg: 5
-    //  */    
-    // //% block
-    // export function fib(value: number): number {
-    //     return value <= 1 ? value : fib(value -1) + fib(value - 2);
-    // }
 }
