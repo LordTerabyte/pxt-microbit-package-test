@@ -31,13 +31,13 @@ namespace ekran {
 
 enum KojiMotor {
     //% block="motor 1"
-    motor01 = 1,
+    motor01 = 0,
     //% block="motor 2"
-    motor02 = 2,
+    motor02 = 1,
     //% block="motor 3"
-    motor03 = 3,
+    motor03 = 2,
     //% block="motor 4"
-    motor04 = 4
+    motor04 = 3
 }
 
 enum KojeStanje {
@@ -48,13 +48,6 @@ enum KojeStanje {
     //% block="smjer B"
     smjer_b
 }
-
-let motorPinMapa : { [i:number]:DigitalPin[] } = {
-    1: [DigitalPin.P8, DigitalPin.P9],
-    2: [DigitalPin.P10, DigitalPin.P12],
-    3: [DigitalPin.P13, DigitalPin.P14],
-    4: [DigitalPin.P15, DigitalPin.P16],
-};
 
 /**
  * Custom blocks
@@ -80,6 +73,13 @@ namespace motor {
             default: return null;
         }
     }
+
+    let motorPinMapa = [
+        [DigitalPin.P8, DigitalPin.P9],
+        [DigitalPin.P10, DigitalPin.P12],
+        [DigitalPin.P13, DigitalPin.P14],
+        [DigitalPin.P15, DigitalPin.P16]
+    ];
 
     /**
      * Promjeni stanje motora
